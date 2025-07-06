@@ -18,7 +18,7 @@ Used setInterval() to refresh the clock every second and confirmed formatting wi
 
 ## screentshots
 ## Detail page
- [Detail Page](./Screenshots/detailpage.png)
+ [Detail Page](./Screenshots/detailpage.png) 
 
 ## Home Page
  [Home Page](./Screenshots/homepage.png)
