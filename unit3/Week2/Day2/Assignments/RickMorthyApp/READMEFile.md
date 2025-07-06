@@ -22,3 +22,6 @@ Used setInterval() to refresh the clock every second and confirmed formatting wi
 
 ## Home Page
  [Home Page](./Screenshots/homepage.png)
+
+## Deployment
+[click here to access deployed here](https://bucolic-seahorse-3eda17.netlify.app/)
