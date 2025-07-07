@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Debounced OMDB Search</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    input {
+      width: 300px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    #results {
+      margin-top: 20px;
+    }
+    .movie {
+      margin-bottom: 10px;
+    }
+   #results {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 👈 3 columns */
+  gap: 20px; /* spacing between items */
+  }
+
+
+
+  </style>
+</head>
+<body>
+
+  <h2>OMDB Movie Search (Debounced)</h2>
+  <input type="text" id="searchInput" placeholder="Type a movie name..." />
+  <div id="results"></div>
+
+  <script>
+    const input = document.getElementById('searchInput');
+    const resultsDiv = document.getElementById('results');
+    let debounceTimeout;
+
+    // Function to call OMDB API
+    async function fetchMovies(query) {
+      const apiKey = "b9bd48a6"
+      const url = `https://www.omdbapi.com/?apikey=${apiKey}&s=${encodeURIComponent(query)}`;
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.Response === "True") {
+          displayResults(data.Search);
+        } else {
+          resultsDiv.innerHTML = "<p>No results found.</p>";
+        }
+      } catch (error) {
+        resultsDiv.innerHTML = "<p>Error fetching movies.</p>";
+        console.error(error);
+      }
+    }
+
+    // Function to display results
+    function displayResults(movies) {
+  resultsDiv.innerHTML = "";
+  movies.forEach(movie => {
+    const div = document.createElement('div');
+    div.classList.add('movie');
+    
+    div.innerHTML = `
+      <img src="${movie.Poster !== 'N/A' ? movie.Poster : 'https://via.placeholder.com/100x150'}" 
+           alt="${movie.Title}" 
+           style="width:100px; vertical-align: middle; margin-right:10px;" />
+      <span><strong>${movie.Title}</strong> (${movie.Year}) <br/><em>Type: ${movie.Type}</em></span>
+    `;
+    resultsDiv.appendChild(div);
+  });
+}
+
+
+    // Debounce input
+    input.addEventListener('input', () => {
+      clearTimeout(debounceTimeout);
+
+      debounceTimeout = setTimeout(() => {
+        const query = input.value.trim();
+        if (query) {
+          fetchMovies(query);
+        } else {
+          resultsDiv.innerHTML = "";
+        }
+      }, 500); // 500ms delay
+    });
+  </script>
+
+</body>
+</html>
