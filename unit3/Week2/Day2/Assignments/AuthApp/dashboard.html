@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head><title>Dashboard</title></head>
+<body>
+  <h2>Dashboard</h2>
+  <div id="welcome"></div>
+  <button onclick="logout()">Logout</button>
+  <div id="products"></div>
+
+  <script type="module">
+    import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js";
+    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+    import { database, auth } from './firebase-config.js';
+
+    const uid = localStorage.getItem("uid");
+    if (!uid) {
+      alert("Please login first.");
+      window.location.href = "login.html";
+    } else {
+      const userRef = ref(database, "users/" + uid);
+      get(userRef).then((snapshot) => {
+        const userData = snapshot.val();
+        document.getElementById("welcome").innerHTML = `<h3>Welcome, ${userData.name}</h3>`;
+      });
+    }
+
+    fetch("https://fakestoreapi.com/products")
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById("products");
+        data.forEach(product => {
+          const div = document.createElement("div");
+          div.innerHTML = `
+            <h3>${product.title}</h3>
+            <p>Price: $${product.price}</p>
+            <img src="${product.image}" width="100"><hr>`;
+          container.appendChild(div);
+        });
+      });
+
+    window.logout = function () {
+      signOut(auth).then(() => {
+        localStorage.removeItem("uid");
+        window.location.href = "login.html";
+      });
+    };
+  </script>
+</body>
+</html>
