@@ -1,0 +1,52 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <input type="email" id="loginEmail" placeholder="Email">
+    <input type="password" id="loginPassword" placeholder="Password">
+    <button id="loginBtn">Login</button>
+    <p id="loginMsg"></p>
+  </div>
+  
+  <script type="module">
+    import { auth, db } from './firebase-config.js';
+    import { signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js';
+    import { ref, get } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js';
+
+    document.getElementById('loginBtn').addEventListener('click', async () => {
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+
+      if (!email || !password) {
+        alert("Enter both fields!");
+        return;
+      }
+
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        const userRef = ref(db, 'users/' + user.uid);
+        const snapshot = await get(userRef);
+        const role = snapshot.val().role;
+
+        sessionStorage.setItem('role', role);
+
+        if (role === 'admin') {
+          window.location.href = 'admin-dashboard.html';
+        } else {
+          window.location.href = 'user-dashboard.html';
+        }
+      } catch (error) {
+        document.getElementById('loginMsg').innerText = "Incorrect email or password!";
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+/* style.css */
+body {
+  font-family: sans-serif;
+  background: #f1f1f1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px;
+}
+
+.container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+}
+
+button {
+  width: 100%;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  max-width: fit-content;
+}
+#image{
+    size: 400px;
+}
+
+#addProductBtn{
+  background-color: aqua;
+  max-width: fit-content;
+}
+#addProductBtn>span{
+color: black;
+
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  margin: 10px 0;
+  background: #eee;
+  padding: 10px;
+  border-radius: 8px;
+}

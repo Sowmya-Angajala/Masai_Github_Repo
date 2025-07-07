@@ -1,0 +1,51 @@
+<!-- user-dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Product Gallery</h2>
+    <ul id="productList"></ul>
+  </div>
+
+  <script type="module">
+    import { db } from './firebase-config.js';
+    import { ref, onValue } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js';
+
+    // Check role
+    const role = sessionStorage.getItem('role');
+    if (role !== 'user') {
+      window.location.href = 'admin-dashboard.html';
+    }
+
+    const productList = document.getElementById('productList');
+
+    function loadProducts() {
+      const productsRef = ref(db, 'products');
+      onValue(productsRef, snapshot => {
+        productList.innerHTML = '';
+        const data = snapshot.val();
+        if (data) {
+          Object.values(data).forEach(product => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+              <strong>${product.title}</strong> - ₹${product.price}<br>
+              <img src="${product.image}" width="80" onerror="this.src='fallback.png'" />
+
+            `;
+            productList.appendChild(li);
+          });
+        } else {
+          productList.innerHTML = '<li>No products found.</li>';
+        }
+      });
+    }
+
+    loadProducts();
+  </script>
+</body>
+</html>

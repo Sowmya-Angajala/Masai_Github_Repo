@@ -1,0 +1,93 @@
+<!-- admin-dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Admin Panel</h2>
+    <input id="title" placeholder="Product Title" />
+    <input id="price" placeholder="Price" type="number" />
+    <input id="image" placeholder="Image URL" />
+    <button id="addProductBtn" ><span>Add Product</span></button>
+    <ul id="productList"></ul>
+  </div>
+
+  <script type="module">
+    import { db } from './firebase-config.js';
+    import { ref, push, set, onValue, update, remove } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js';
+
+    const role = sessionStorage.getItem('role');
+    if (role !== 'admin') {
+      window.location.href = 'user-dashboard.html';
+    }
+
+    const title = document.getElementById('title');
+    const price = document.getElementById('price');
+    const image = document.getElementById('image');
+    const productList = document.getElementById('productList');
+    const addProductBtn = document.getElementById('addProductBtn');
+
+    // Add Product
+    addProductBtn.addEventListener('click', () => {
+      const product = {
+        title: title.value,
+        price: Number(price.value),
+        image: image.value
+      };
+
+      const newProductRef = push(ref(db, 'products'));
+      set(newProductRef, product);
+
+      title.value = '';
+      price.value = '';
+      image.value = '';
+    });
+
+    // Fetch and display products
+    function fetchProducts() {
+      const productsRef = ref(db, 'products');
+      onValue(productsRef, snapshot => {
+        const data = snapshot.val();
+        productList.innerHTML = '';
+
+        for (let id in data) {
+          const product = data[id];
+          const li = document.createElement('li');
+          li.innerHTML = `
+            <strong>${product.title}</strong> - ₹${product.price}<br>
+            <img src="${product.image}" width="100"><br>
+            <button onclick="editProduct('${id}', '${product.title}', ${product.price}, '${product.image}')">Edit</button>
+            <button onclick="deleteProduct('${id}')">Delete</button>
+          `;
+          productList.appendChild(li);
+        }
+      });
+    }
+
+    // Delete product
+    window.deleteProduct = (id) => {
+      remove(ref(db, 'products/' + id));
+    };
+
+    // Edit product
+    window.editProduct = (id, titleVal, priceVal, imageVal) => {
+      const newTitle = prompt("Edit Title", titleVal);
+      const newPrice = prompt("Edit Price", priceVal);
+      const newImage = prompt("Edit Image URL", imageVal);
+
+      if (newTitle && newPrice && newImage) {
+        update(ref(db, 'products/' + id), {
+          title: newTitle,
+          price: Number(newPrice),
+          image: newImage
+        });
+      }
+    };
+
+    fetchProducts();
+  </script>
+</body>
+</html>

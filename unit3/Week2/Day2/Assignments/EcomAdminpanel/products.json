@@ -1,0 +1,25 @@
+{"products": {
+  "-NkX001": {
+    "title": "Smartphone",
+    "price": 599,
+    "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"
+  },
+  "-NkX002": {
+    "title": "Laptop",
+    "price": 999,
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
+  },
+  "-NkX003": {
+    "title": "Wireless Headphones",
+    "price": 149,
+    "image": "https://images.unsplash.com/photo-1580894908361-967195033215"
+  },
+  "-NkX004": {
+    "title": "Smartwatch",
+    "price": 199,
+    "image": "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b"
+  }
+}
+
+}
+
