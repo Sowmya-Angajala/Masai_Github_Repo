@@ -1,0 +1,7 @@
+let temp=""
+let book={ title: "The Hobbit", author: "J.R.R. Tolkien", year: 1937 };
+for(key in book){
+    temp=temp+key+":"+book[key]+" "
+    
+}
+console.log(temp)

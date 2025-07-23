@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #productContainer{
+            display: flex;
+           grid-template-columns: repeat(2,1fr);
+            width: 30%;
+
+        }
+        #productContainer{
+            bottom: ;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="productContainer"></div>
+    <button id="btn" onclick="fetchProducts()">Fetch products</button>
+   
+</body>
+</html>
+<script>
+    async function fetchProducts(){
+     let buttom =document.getElementById('btn')
+    try{
+// disabling the fetchbutton to avoid repeating clicks 
+         buttom.disabled =true
+        // fetching the data
+        let response =await fetch("https://fakestoreapi.com/products")
+        // below line handling the promise
+        let products= await response.json();
+        console.log(products)
+
+        let container=document.getElementById("productContainer")
+        products.forEach((product,index)=>{
+            // console.log((product.title,product.rating.rate));
+
+            let productBox=document.createElement("div");
+
+            // let h4=document.createElement("h4")
+            // h4.innerText="Title :"+product.title
+
+            // let p=document.createElement("p");
+            // p.innerText="Price :"+product.pricw
+
+            // productBox.append(h4)
+
+// Using innerHtml for dynamic approch instead of above commented code line
+            productBox.innerHTML=`
+             <h4>$(product.title)</h4>
+            <img src="${product.image}" alt="">
+
+            <p>${product.price}</p>
+            `
+            container.appendChild(productBox)
+            
+            
+        })
+    }
+  catch(error){
+        alert("failed to fetch the products")
+    }
+    finally {
+       button.disabled=false 
+    }
+}
+
+</script>

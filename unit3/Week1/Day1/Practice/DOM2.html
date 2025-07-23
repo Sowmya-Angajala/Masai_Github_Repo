@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="title">Welcome to Element Section</h1>
+    <p class="paras">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus sequi aliquid exercitationem rerum harum, laboriosam dolores possimus! Exercitationem veritatis repellendus enim, consequuntur a, tempore ab sunt quod omnis est cum.</p>
+    <!-- <p class=""></p> -->
+
+</body>
+<script>
+        const t=document.getElementById('title')
+        t.style.backgroundColor="pink"
+
+        const p=document.querySelectorAll('.paras')
+        p.forEach((item,index)=>{
+        item.textContent=item.textContent.toUpperCase();
+
+        })
+        // p.textContent="uppercase"
+</script>
+</html>

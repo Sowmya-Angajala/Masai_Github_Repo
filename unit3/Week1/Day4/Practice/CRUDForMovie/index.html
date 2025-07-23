@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase</title>
+    <style>
+        body{
+          font-family: sans-serif;
+          text-align: center;
+          margin: 20px;
+          background-color: azure; 
+
+        }
+        input,button{
+            margin:5px;
+            padding: 8px;
+        }
+        #movieList{
+            display: grid;
+            grid-template-columns: repeat();
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Firebase Movie Database</h2>
+    <input type="text" id="title" placeholder="Enter movie title">
+    <input type="number"id="year" placeholder="year">
+    <input type="text"id="genre" placeholder="Genre">
+    <input type="text" id="image"placeholder="Image URL" alt="Image not found">
+
+    <button onclick="addMovie()">Add Movie</button>
+    <h3>Movie List</h3>
+    <div id="movieList"></div>
+
+</body>
+</html>
+<script>
+    // Adding data
+    async function addMovie(){
+      let movie={
+        title:document.getElementById("title").value,
+        year:document.getElementById("year").value,
+        genre:document.getElementById("genre").value,
+        image:document.getElementById("image").value
+      }
+      
+      let res=await fetch("https://moviedb-7b833-default-rtdb.asia-southeast1.firebasedatabase.app/movies.json",{
+
+    //   add data into the firebase
+      method:"POST",
+      headers:{
+        "Content-Type" :"application/json",
+      },
+      body:JSON.stringify(movie)
+    })
+    document.getElementById('title')="";
+    document.getElementById('year')="";
+    document.getElementById('genre')="";
+    document.getElementById('image')=""
+}
+async function fetchMovies(){
+    let res=await fetch("https://moviedb-7b833-default-rtdb.asia-southeast1.firebasedatabase.app/movies.json")
+    let data =await res.json();
+
+    let movieList=document.getElementById('moviesList');
+    movieList.innerHTML=""
+
+    let moviesArray=Object.entries(data).map({[id,movie]}=>{{id,...movie}})
+    console.log(moviesArray)
+
+    moviesArray.forEach((movie)=>{
+        let movieCard=document.createElement('div');
+        movieCard.className='movie-card'
+        movieCard.innerHTML=`<img src="${movie.image}" >
+        <h4>${movie.title}</h4>
+        <p>${movie.genre</p>
+        <button clss>Delete</button>
+        `
+    })
+    // convert the data into array of objects
+
+
+}
+fetchMovies()
+</script>

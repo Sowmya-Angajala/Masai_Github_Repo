@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div  >
+        <ul id="ulll">
+            <li>Mango</li>
+            <li>WaterMelon</li>
+            <li>Papaya</li>
+        </ul>
+    </div>
+    <button id="myBtn" >Add Item</button>
+</body>
+</html>
+<script>
+       document.getElementById('myBtn').addEventListener("click",myFunction);
+       function myFunction(){
+       const ul=document.getElementById('ulll')
+       console.log(typeof ul.innerHTML)
+       ul.innerHTML+='<li>NewItem</li>'
+       }
+    </script>

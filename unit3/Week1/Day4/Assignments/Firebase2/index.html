@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Novel List</title>
+    <script src="https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js"></script>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        input,
+        select {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>📚 Novel List</h2>
+
+    <input type="text" id="search" placeholder="Search by title or author" />
+    <select id="yearFilter">
+        <option value="">All Years</option>
+        <option value="2019">2019</option>
+        <option value="2020">2020</option>
+        <option value="2021">2021</option>
+        <option value="2022">2022</option>
+    </select>
+    <select id="sortPrice">
+        <option value="">Sort by Price</option>
+        <option value="asc">Price: Low to High</option>
+        <option value="desc">Price: High to Low</option>
+    </select>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Price</th>
+                <th>Release Year</th>
+                <th>Genre</th>
+            </tr>
+        </thead>
+        <tbody id="novelList"></tbody>
+    </table>
+    <script>
+    
+        const firebaseConfig = {
+            apiKey: "AIzaSyD9hm3saEH-WmWZR9HYBdsSB4iLh9-FKXg",
+            authDomain: "novels-105d4.firebaseapp.com",
+            databaseURL: "https://novels-105d4-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "novels-105d4",
+            storageBucket: "novels-105d4.firebasestorage.app",
+            messagingSenderId: "1073962062822",
+            appId: "1:1073962062822:web:17d75a0c76fdd31a35fc27",
+            measurementId: "G-52Z1BYV8YM"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = firebase.firestore()
+    
+    const searchInput = document.getElementById("search");
+    const yearFilter = document.getElementById("yearFilter");
+    const sortPrice = document.getElementById("sortPrice");
+    const novelList = document.getElementById("novelList");
+
+    async function fetchNovels() {
+      let query = db.collection("novels");
+
+      const year = yearFilter.value;
+      const sort = sortPrice.value;
+      const search = searchInput.value.toLowerCase();
+
+      if (year) {
+        query = query.where("release_year", "==", parseInt(year));
+      }
+
+      if (sort === "asc") {
+        query = query.orderBy("price", "asc");
+      } else if (sort === "desc") {
+        query = query.orderBy("price", "desc");
+      }
+
+      const snapshot = await query.get();
+      let novels = [];
+
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        if (
+          data.title.toLowerCase().includes(search) ||
+          data.author.toLowerCase().includes(search)
+        ) {
+          novels.push(data);
+        }
+      });
+
+      render(novels);
+    }
+
+    function render(novels) {
+      novelList.innerHTML = "";
+      novels.forEach(novel => {
+        novelList.innerHTML += `
+          <tr>
+            <td>${novel.title}</td>
+            <td>${novel.author}</td>
+            <td>$${novel.price.toFixed(2)}</td>
+            <td>${novel.release_year}</td>
+            <td>${novel.genre}</td>
+          </tr>
+        `;
+      });
+    }
+
+    searchInput.addEventListener("input", fetchNovels);
+    yearFilter.addEventListener("change", fetchNovels);
+    sortPrice.addEventListener("change", fetchNovels);
+
+    fetchNovels(); 
+  </script>
+</body>
+</html>

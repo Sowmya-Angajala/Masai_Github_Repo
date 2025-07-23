@@ -1,0 +1,16 @@
+let arr=[40,50,30,79,10,12,08,23,99,82]
+let count=0;
+for(let i=0;i<=arr.length-1;i++){
+    if (arr[i]<=40){
+       arr[i]=arr[i]+20;
+    }
+    if(arr[i]>=90){
+        arr[i]=90;
+    }
+    if(arr[i]>=50){
+        count++;
+    }
+    
+}
+console.log(count);
+console.log(arr);

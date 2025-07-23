@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+</head>
+
+<body>
+    <h2>Task Manager</h2>
+    <input type="text" name="taskInput" id="taskInput" placeholder="Enter Your task">
+    <button id="addtaskBtn"></button>
+    <div class="controls">
+        <button id="Allbtn">All</button>
+        <button id="completedBtn">Completed</button>
+        <button id="incompleteBtn">Incomplete</button>
+        <button id="sortBtn">Sort A-Z</button>
+    </div>
+    <p>Total: <span id="totalCount">0</span>,Completed : <span id="completedCount">0</span>, Incompleted: <span
+            id="incompletedCount">0</span>
+    </p>
+    <ul id="taskList"></ul>
+
+    <span class=""></span>
+    <div>
+        <input type="checkbox" data-index="${index}" name="toggle" ${task.completed ? 'checked' : "" }>
+    </div>
+    <script>
+
+        // targeting elementsss
+        const taskInput = document.getElementById('taskInput');
+        const addtaskBtn = document.getElementById('addtaskbtn');
+        const taskList = document.getElementById('taskList');
+        const totalCount = document.getElementById('totalCount');
+        const completedCount = document.getElementById('completedCount');
+        const Allbtn = document.getElementById('Allbtn');
+        const completedBtn = document.getElementById('completedBtn');
+        const incompleteBtn = document.getElementById('incompleteBtn');
+        const sortBtn = document.getElementById('sortBtn');
+
+        let task = [];
+        let filterType = 'all';
+        function renderTasks() {
+            taskList.innerHTML = ""
+        }
+        let filtered = task.filter(task => {
+            if (filterType === "completed") return task.completed
+            if (filterType === "incompleted") return !task.completed
+            return true;
+        })
+
+
+        // Rendering using map
+        filtered.map((task, index) => {
+            const li = document.createElement('li');
+            li.innerHTML =
+
+            
+        // counters
+        totalCount.textContent=tasks.length
+        completedCount.textContent=task.filter(t => t.completed).length;
+        incompletedCount.textContent=task.filter(t =>!t.incompleted).length;
+        }
+
+        // Event delegation
+        taskList.addEventListener('click',(e)=>{
+            const index=e.target.value;
+            if(e.target.classList.comtain('delete')){
+                task.splice(index,1)
+            }
+            if(e.target.classList.contains('toggle')){
+                task[index].completed=!taskInput[index].completed;
+            }
+            renderTasks();
+        })
+
+        
+    </script>
+</body>
+
+</html>

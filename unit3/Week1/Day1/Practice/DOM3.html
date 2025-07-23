@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class-based Selection</title>
+</head>
+<body>
+    <p class="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, corporis illum! Aut dignissimos excepturi expedita provident quis facere, veritatis corrupti laudantium cupiditate error, possimus at cumque doloribus necessitatibus ipsa perspiciatis.</p>
+
+</body>
+<script>
+    const c=document.getElementsByClassName("para")
+       for (let i = 0; i < c.length; i++) {
+    c[i].style.fontSize = `${14 + i * 2}px`; // Varying font size
+}
+    
+</script>
+</html>

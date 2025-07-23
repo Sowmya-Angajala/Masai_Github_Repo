@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="todoInput" placeholder="Enter your task">
+    <button onclick="addTodo()">Add Todo</button>
+    <button onclick="clearAll()">clear Todo</button>
+    <ul id="todoList"></ul>
+</body>
+</html>
+<!-- <script>
+
+    function addTodo(){
+
+
+        let todoInput=document.getElementById("todoInput").value
+        let todoList=document.getElementById("todoList");
+
+        // Manipulating DOM --to display list we are just using list id and creating the list with createElement
+        let li=document.createElement('li')
+        li.innerText=todoInput
+
+        todoList.appendChild(li);
+
+    }
+
+    function clearAll(){
+        document.getElementById('todoList').innerHTML=""
+    } -->
+
+<!-- 
+    // 1.Take data from the input tag
+    // 2.Store it in Local Storage
+    //   1.Check if any data is already present inlocal Storage
+    //   2.If exists use it else assign an array
+    //   3.push the new data again to LS
+    // 3.Display the data
+    //   1.fetch it
+    //   2.map it on the UI
+ -->
+
+<!-- </script> -->
+
+<!-- To store the data in local Storage persistently i.e even after refreshing the page data should store in the local storage -->
+
+<script>
+
+
+ // get array: string ➔ array
+// let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+// // save array: array ➔ string
+// localStorage.setItem("tasks", JSON.stringify(tasks));
+
+
+
+    function addTodo(){
+    let todoInput=document.getElementById('todoInput').value
+    let tasks=JSON.parse(localStorage.getItem("tasks"))  || []
+
+    tasks.push(todoInput)
+    console.log(tasks)
+    // convert it into String
+    localStorage.setItem("tasks",JSON.stringify(tasks));
+    }
+    function displayData(){
+        let tasks=JSON.parse(localStorage.getItem('tasks'));
+        let todoList =document.getElementById('todoList');
+
+        tasks.forEach((ele)=>{
+        li.innerText=ele;
+        todoList.appendChild(li)
+        })
+    }
+    // WHy displaydata two time???? 
+    
+    // It’s likely called inside clear() to refresh data after clearing, and outside to load data initially. So, it's reused for both cases.
+    function clearAll(){
+        localStorage.removeItem('tasks')
+        displayData()
+    }
+    displayData()
+</script>

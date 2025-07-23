@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <h1>Book Explorer</h1>
+    <select name="book"  onchange="filterBooks(this.value)">
+    <option value="all">All</option>
+    <option value="novel">Novel</option>
+    <option value="spiritual">Spiritual</option>
+</select>
+<button onclick="sortBooks(asc)">Sort Low to High</button>
+<button onclick="sortBooks(desc)">Sort High to Low</button>
+<div id="books"></div>
+<button onclick="getFromFirebase()">view My bookmarks</button>
+
+<button onclick="changePage(-1)">Prev</button>
+<button onclick="nextPage(+1)">Next</button>
+
+
+<script src="script.js"></script>
+
+
+</body>
+</html>

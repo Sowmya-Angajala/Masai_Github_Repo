@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="themeButton">Toggle Theme</button>
+</body>
+
+<!-- Saving Data
+To store data in localStorage or sessionStorage, you can use the setItem() method. -->
+
+<!-- Syntax:
+localStorage.setItem('key', 'value'); // For localStorage
+sessionStorage.setItem('key', 'value'); // For sessionStorage
+Example: Storing User Preferences in localStorage -->
+
+<button id="themeButton">Toggle Theme</button>
+<button id="clearPreferences">clear</button>
+
+<script>
+  const themeButton = document.getElementById('themeButton');
+
+  themeButton.addEventListener('click', () => {
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme === 'dark') {
+      localStorage.setItem('theme', 'light');
+      document.body.style.backgroundColor = '#fff';
+    } else {
+      localStorage.setItem('theme', 'dark');
+      document.body.style.backgroundColor = '#333';
+    }
+  });
+
+// 3.1. Saving Data
+// To store data in localStorage or sessionStorage, you can use the setItem() method.
+
+// Syntax:
+// localStorage.setItem('key', 'value'); // For localStorage
+// sessionStorage.setItem('key', 'value'); // For sessionStorage
+
+
+//   <!-- In this example, we store the user's theme preference (light or dark) in localStorage.
+//   The value persists even if the page is reloaded or the browser is closed and reopened. -->
+// Retrieving Data
+// To retrieve data from localStorage or sessionStorage, use the getItem() method. 
+// It returns the value associated with the key or null if the key does not exist.
+
+// Syntax:
+// const value = localStorage.getItem('key');
+// const value = sessionStorage.getItem('key');
+        //    Example: Loading User Preferences
+window.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme');
+
+  if (savedTheme === 'dark') {
+    document.body.style.backgroundColor = '#333';
+  } else {
+    document.body.style.backgroundColor = '#fff';
+  }
+});
+
+
+// Deleting Item
+localStorage.removeItem("key")
+sessionStorage.removeItem("key")
+// clears all keys and values
+
+localStorage.clear();
+sessionStorage.clear();
+
+// Clearing user preferences by adding clear button
+
+// Syntax:
+// localStorage.removeItem('key'); // Removes a specific key
+// sessionStorage.removeItem('key');
+
+// localStorage.clear(); // Clears all keys and values
+// sessionStorage.clear();
+
+
+  const clearButton = document.getElementById('clearPreferences');
+
+  clearButton.addEventListener('click', () => {
+    localStorage.removeItem('theme'); // Removes the 'theme' key from localStorage
+    alert('Preferences cleared!');
+  });
+
+  </script>
+</html>

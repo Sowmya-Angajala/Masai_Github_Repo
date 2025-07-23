@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="productinput" placeholder="Enter product name">
+    <button onclick="fetchProduct()">Search</button>
+    <div id="productContainer"></div>
+</body>
+</html>
+<script>
+    async function fetchProduct(){
+        let searchQuery=document.getElementById("productinput")
+
+        try{
+            let res=await fetch("https://fakestoreapi.com/products")
+            let products =await res.json()
+
+            let filteredProducts=products.filter((product) =>
+             product.title.toLowerCase().includes(searchQuery));
+            console.log(filteredProducts)
+
+            filteredProducts.forEach((product)=>{
+                container.innerHTML=
+            })
+
+        }
+        catch(error){
+
+        }
+    }  
+</script>

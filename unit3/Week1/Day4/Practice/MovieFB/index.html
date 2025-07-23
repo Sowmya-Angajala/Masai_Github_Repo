@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie FireBase</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    async function fetchMovies(){
+        let res=await fetch("url/movies.json")
+        let movies=await res.json()
+        // converting obj of obj data into array of objects
+        // so that we can perform higher order functions.
+
+        let moviesArray=Object.entries(movies) //passing fetched array
+        console.log(moviesArray) //again this time array of array data as output
+    
+        let finalData=moviesArray.map(([id,movie])=>[{id,...movie}])
+        console.log(finalData)
+
+        //               OR
+        //    Below one is another method to convert into array of objects
+
+        let newArray=[]
+        for (let key in movies){
+            newArray.push({id:key,...movies[key]})
+        }
+        console.log(newArray)
+    }
+    fetchMovies()
+</script>

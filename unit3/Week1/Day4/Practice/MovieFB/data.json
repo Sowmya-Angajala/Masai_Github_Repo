@@ -1,0 +1,14 @@
+{
+    "m1":{
+        "genre":"Sci-fi",
+        "image":"https://static1.srcdn.com/wordpress/wp-content/uploads/2023/04/where-to-watch-inception-1.jpg",
+        "title":"Inception",
+        "year":2010
+    },
+    "m2":{
+        "genre":"Romantic",
+        "image":"",
+        "title":"Titanic",
+        "year":1997
+    }
+}

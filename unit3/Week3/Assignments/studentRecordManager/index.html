@@ -168,8 +168,8 @@
       e.preventDefault();
       const name = nameInput.value.trim();
       const batch = batchInput.value.trim();
-      const age = parseInt(ageInput.value);
-      const score = parseInt(scoreInput.value);
+      const age = parseInt(ageInput.value); //converts string into integer
+      const score = parseInt(scoreInput.value); //converts string into integer
 
       if (!name || !batch || isNaN(age) || isNaN(score) || score < 0 || score > 100) {
         alert("Please fill all fields correctly!");
@@ -190,11 +190,11 @@
     });
 
     function renderTable(data) {
-      tbody.innerHTML = "";
+      tbody.innerHTML = ""; //clears the old existing data
 
       data.forEach((student, index) => {
-        const tr = document.createElement("tr");
-        if (student.score > 80) tr.classList.add("highlight");
+        const tr = document.createElement("tr"); //Creates a new table row element for each student.
+        if (student.score > 80) tr.classList.add("highlight"); //css class Highlight
 
         tr.innerHTML = `
           <td>${student.name}</td>
@@ -207,7 +207,7 @@
           </td>
         `;
 
-        tbody.appendChild(tr);
+        tbody.appendChild(tr); //we have created a table row right that has to be appended to the body of the table
       });
 
       updateStats();
@@ -215,8 +215,8 @@
 
     function editStudent(index) {
       const student = students[index];
-      nameInput.value = student.name;
-      batchInput.value = student.batch;
+      nameInput.value = student.name; //fills the Name field in the form with the student’s current name.
+      batchInput.value = student.batch;//Pre‑fills the Batch field.
       ageInput.value = student.age;
       scoreInput.value = student.score;
       editingIndex = index;
@@ -224,7 +224,7 @@
 
     function deleteStudent(index) {
       if (confirm("Are you sure you want to delete this student?")) {
-        students.splice(index, 1);
+        students.splice(index, 1); //Removes exactly one element from students at position index
         renderTable(students);
       }
     }
