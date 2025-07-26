@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Original Title</title>
+</head>
+
+<div id="React">I am from DOM</div>
+<div id="root"></div>
+<body>
+    <button id="btn" onclick="changeTitle()">Change Title (Vanilla JS)</button>
+   
+    <script>
+        function changeTitle() {
+            document.getElementById('btn').addEventListener("click", function () {
+                document.title = "Vanill JS";
+            })
+        }
+        // changeTitle()
+    </script>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <script type="text/babel">
+    const{useState} =React;
+    function ReactApp(){
+        const[count ,setCount]=useState(0);
+        const changeTitleReact=()=>{
+            document.title="changed by React";
+            setCount(count+1)
+        };
+        return (
+            <div>
+                <h2>React Section</h2>
+                <button onClick={changeTitleReact}   >Change Title (React)</button>
+                <p>React DOM Updates:{count}</p>
+                </div>
+        );
+    }
+    const  root=ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<ReactApp/>)
+    </script>
+        
+
+</body>
+
+</html>
