@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>React SPA with CDN</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+      }
+
+      nav {
+        background-color: navy;
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+      }
+
+      nav span {
+        margin: 0 1.5rem;
+        cursor: pointer;
+        color: white;
+        font-size: 1.1rem;
+        transition: color 0.3s;
+      }
+
+      nav span:hover {
+        color: lightgray;
+      }
+
+      .active {
+        font-weight: bold;
+        text-decoration: underline;
+      }
+
+      main {
+        padding: 2rem;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- React, ReactDOM and Babel CDN links -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script
+      src="https://unpkg.com/@babel/standalone/babel.min.js"
+    ></script>
+
+    
+    <script type="text/babel">
+      const { useState } = React;
+
+      function Home() {
+        return (
+        <div >
+        <h2 style={{ color: "#007bff" }}>🏠 Welcome to Home</h2>;
+        <p  style={{ fontSize: "1.1rem", maxWidth: "700px", margin: "1rem auto" }}>Welcome to our React Single Page Application! 
+             A Single Page Application (SPA) is a modern approach to web development where the entire application runs within a single HTML page.
+             Unlike traditional websites that reload the entire page for every navigation, SPAs dynamically update only the necessary content using JavaScript. 
+             This results in a much faster and smoother user experience. When a user clicks on a link or interacts with the application,
+             the browser doesn't request a full page reload from the server.Instead, 
+             it uses technologies like the DOM API, AJAX, or Fetch to load and display new data on the same page itself.
+             SPAs are commonly built using frontend frameworks such as React, Vue, or Angular.</p>
+        </div>
+    );
+      }
+
+      function About() {
+        return (
+        <>
+        <h2 style={{ color: "#28a745" }}>📖 About Us</h2>
+        <p style={{ fontSize: "1.1rem", maxWidth: "700px", margin: "1rem auto" }}>
+        This app is created as part of a hands-on project to learn the basics of
+        React, JSX, and state-driven UI updates. We believe in learning by building,
+        and this SPA is a perfect beginner-friendly example of how React can be used
+        to create modern web applications.
+      </p>
+      </>
+
+      );
+      }
+
+      function Contact() {
+        return <h2 style={{ color: "#dc3545" }}>📞 Contact Us</h2>
+    
+      }
+
+      function App() {
+        const [activePage, setActivePage] = useState("Home");
+
+        const renderPage = () => {
+          switch (activePage) {
+            case "Home":
+              return <Home />;
+            case "About":
+              return <About />;
+            case "Contact":
+              return <Contact />;
+            default:
+              return <Home />;
+          }
+        };
+
+        return (
+          <div>
+            <nav>
+              <span
+                className={activePage === "Home" ? "active" : ""}
+                onClick={() => setActivePage("Home")}
+              >
+                Home
+              </span>
+              <span
+                className={activePage === "About" ? "active" : ""}
+                onClick={() => setActivePage("About")}
+              >
+                About
+              </span>
+              <span
+                className={activePage === "Contact" ? "active" : ""}
+                onClick={() => setActivePage("Contact")}
+              >
+                Contact
+              </span>
+            </nav>
+            <main>{renderPage()}</main>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
