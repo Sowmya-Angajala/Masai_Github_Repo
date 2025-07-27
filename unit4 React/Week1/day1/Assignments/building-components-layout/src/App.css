@@ -1,0 +1,39 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.header {
+  background-color: #282c34;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+.navbar ul {
+  display: flex;
+  list-style: none;
+  background: #eee;
+  padding: 1rem;
+  justify-content: center;
+}
+.navbar li {
+  margin: 0 1rem;
+  cursor: pointer;
+}
+.section {
+  display: flex;
+  justify-content: space-around;
+  padding: 2rem;
+}
+.card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  width: 25%;
+  box-shadow: 2px 2px 6px #ddd;
+}
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #282c34;
+  color: white;
+}
