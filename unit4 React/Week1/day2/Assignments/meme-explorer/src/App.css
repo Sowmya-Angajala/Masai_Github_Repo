@@ -1,0 +1,73 @@
+body.light {
+  background-color: #f5f5f5;
+  color: #222;
+}
+
+body.dark {
+  background-color: #121212;
+  color: #fff;
+}
+
+.app {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background-color: inherit;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.status {
+  font-size: 1.2em;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.status.error {
+  color: red;
+}
+
+button, select, input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #999;
+}
+
+input {
+  width: 200px;
+}
