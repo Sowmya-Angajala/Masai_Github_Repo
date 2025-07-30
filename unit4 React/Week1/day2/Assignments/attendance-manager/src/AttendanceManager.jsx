@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const initialStudents = [
-  { id: 1, name: "Aarav", present: true },
+  { id: 1, name: "John", present: true },
   { id: 2, name: "Sneha", present: false },
   { id: 3, name: "Rahul", present: true },
   { id: 4, name: "Isha", present: false },
@@ -30,7 +30,7 @@ export default function AttendanceManager() {
 
   return (
     <div style={{ fontFamily: "Arial", padding: "20px", maxWidth: "500px", margin: "auto" }}>
-      <h2>📋 Attendance Manager</h2>
+      <h2>📋 Attendance Manager </h2>
 
       <label>Filter: </label>
       <select onChange={(e) => setFilter(e.target.value)} value={filter}>
