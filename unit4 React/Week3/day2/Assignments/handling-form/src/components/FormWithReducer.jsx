@@ -10,7 +10,7 @@ const initialState = {
 function reducer(state, action) {
   switch (action.type) {
     case 'email':
-      return { ...state, email: action.payload };
+      return { ...state, email: action.payload }; //payload carries the data needed to perform that update
     case 'password':
       return { ...state, password: action.payload };
     case 'reset':
