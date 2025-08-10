@@ -1,0 +1,52 @@
+:root {
+  --bg: #fafafa;
+  --card: #fff;
+  --text: #111;
+  --muted: #666;
+  --accent: #2f80ed;
+  --error: #d9534f;
+}
+
+[data-theme="dark"] {
+  --bg: #0f1720;
+  --card: #111827;
+  --text: #e6eef8;
+  --muted: #9aa4b2;
+  --accent: #60a5fa;
+  --error: #f87171;
+}
+
+* { box-sizing: border-box; font-family: Inter, Roboto, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial; }
+body { margin:0; background:var(--bg); color:var(--text); }
+
+.nav {
+  display:flex; justify-content:space-between; align-items:center; padding:10px 20px; background:var(--card); border-bottom:1px solid rgba(0,0,0,0.06);
+}
+.brand { font-weight:700; text-decoration:none; color:var(--text); }
+.nav-right { display:flex; gap:12px; align-items:center; }
+
+button { cursor:pointer; padding:8px 10px; border-radius:6px; border:1px solid rgba(0,0,0,0.08); background:transparent; color:var(--text); }
+a { color:var(--accent); text-decoration:none; margin-left:8px; }
+
+.card { background:var(--card); padding:16px; border-radius:8px; box-shadow: 0 3px 8px rgba(0,0,0,0.04); }
+.small { max-width:420px; margin-top:12px; }
+
+.form { display:flex; flex-direction:column; gap:8px; }
+.form-inline { display:flex; flex-wrap:wrap; gap:12px; align-items:flex-end; }
+.form label { display:flex; flex-direction:column; gap:6px; min-width:160px; }
+input, select { padding:8px 10px; border-radius:6px; border:1px solid rgba(0,0,0,0.1); background:transparent; color:var(--text); }
+
+.panel { margin-bottom:20px; }
+
+.error { color:var(--error); margin:6px 0; }
+
+.search-card { background:var(--card); padding:12px; border-radius:8px; }
+.search-controls { margin-bottom:12px; }
+.suggestions { display:flex; gap:8px; flex-wrap:wrap; margin-top:6px; }
+.pill { border-radius:999px; padding:6px 8px; border:1px solid rgba(0,0,0,0.06); background:transparent; }
+.list-grid { display:grid; grid-template-columns: repeat(auto-fill,minmax(180px,1fr)); gap:12px; }
+.country-card { padding:10px; border-radius:8px; background: rgba(0,0,0,0.02); min-height:80px; }
+.pagination { display:flex; gap:12px; align-items:center; justify-content:center; margin-top:12px; }
+
+.small-note { color:var(--muted); margin-top:6px; font-size:12px; }
+.nav-user { margin-left:8px; color:var(--muted); }
