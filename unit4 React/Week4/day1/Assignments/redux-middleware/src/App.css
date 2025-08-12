@@ -1,0 +1,25 @@
+/* styles.css */
+.app {
+  display: flex;
+}
+.sidebar {
+  width: 200px;
+  padding: 10px;
+  border-right: 1px solid #ccc;
+}
+.coffee-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+  padding: 15px;
+}
+.coffee-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+}
+.coffee-card img {
+  max-width: 100%;
+  border-radius: 5px;
+}
