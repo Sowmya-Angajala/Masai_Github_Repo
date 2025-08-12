@@ -1,0 +1,47 @@
+.card {
+  width: 300px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background-color: white;
+  overflow: hidden;
+  text-align: center;
+  padding: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-title {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.card-description {
+  font-size: 1rem;
+  color: #555;
+  margin-top: 15px;
+}
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  background-color: #f0f0f0;
+}
+
+
+/* Responsive */
+@media (max-width: 500px) {
+  .card {
+    width: 90%;
+  }
+}
