@@ -1,11 +1,14 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../features/cart/cartSlice';
-
+import "../App.css";
+import "../index.css"
 const products = [
-  { id: 1, name: 'Lotion', price: 100 },
-  { id: 2, name: 'Shampoo', price: 150 },
-  { id: 3, name: 'Hair Mask', price: 250 },
+  { id: 1, name: '🥦 Broccoli', price: 40 },
+  { id: 2, name: '🥕 Carrot', price: 25 },
+  { id: 3, name: '🌽 Corn', price: 30 },
+  { id: 4, name: '🍉 Watermelon', price: 20 },
+  { id: 5, name: '🥑 Avocado', price: 35 },
 ];
 
 const ProductList = () => {
