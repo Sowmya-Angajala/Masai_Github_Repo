@@ -1,7 +1,9 @@
-// components/CoffeeList.jsx
+
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCoffee } from "../redux/actions";
+import '../App.css';
+
 
 export const CoffeeList = ({ sortBy }) => {
   const dispatch = useDispatch();
@@ -15,7 +17,7 @@ export const CoffeeList = ({ sortBy }) => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="coffee-grid">
+     <div className="coffee-grid">
       {coffees.map((coffee) => (
         <div key={coffee.id} className="coffee-card">
           <img src={coffee.image} alt={coffee.title} />

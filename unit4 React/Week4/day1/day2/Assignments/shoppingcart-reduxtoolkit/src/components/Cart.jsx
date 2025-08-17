@@ -8,7 +8,7 @@ const Cart = () => {
 
   return (
     <div style={{ marginTop: '20px' }}>
-      <h2>Shopping Cart</h2>
+      <h2>Shopping Cart 🛒</h2>
       {items.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
