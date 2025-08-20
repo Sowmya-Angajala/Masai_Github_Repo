@@ -23,30 +23,65 @@ const FeedbackForm: React.FC = () => {
       createdAt: formatISO(new Date()),
     };
     dispatch(addFeedback(payload));
-    setName(""); setEmail(""); setRating(5); setComment("");
+    setName("");
+    setEmail("");
+    setRating(5);
+    setComment("");
   }
 
   return (
-    <form onSubmit={submit} className="bg-white p-4 rounded shadow-md max-w-2xl">
-      <h2 className="text-xl font-semibold mb-4">Leave Feedback</h2>
+    <form
+      onSubmit={submit}
+      className="bg-gray-900 text-white p-6 rounded-lg shadow-lg w-full max-w-3xl mx-auto"
+    >
+      <h2 className="text-2xl font-bold mb-6">Leave Feedback</h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        <input value={name} onChange={e => setName(e.target.value)} required placeholder="Name" className="p-2 border rounded"/>
-        <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="Email (optional)" className="p-2 border rounded"/>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+          placeholder="Name"
+          className="p-3 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-sky-500"
+        />
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          type="email"
+          placeholder="Email (optional)"
+          className="p-3 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-sky-500"
+        />
       </div>
 
-      <div className="mt-3 flex items-center gap-3">
-        <label>Rating:</label>
-        <select value={rating} onChange={e => setRating(Number(e.target.value))} className="p-2 border rounded">
-          {[1,2,3,4,5].map(n => <option key={n} value={n}>{n}</option>)}
+      <div className="flex items-center gap-4 mb-4">
+        <label className="text-lg">Rating:</label>
+        <select
+          value={rating}
+          onChange={(e) => setRating(Number(e.target.value))}
+          className="p-3 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-sky-500"
+        >
+          {[1, 2, 3, 4, 5].map((n) => (
+            <option key={n} value={n}>
+              {n}
+            </option>
+          ))}
         </select>
       </div>
 
-      <textarea value={comment} onChange={e => setComment(e.target.value)} required placeholder="Your feedback" className="mt-3 w-full p-2 border rounded min-h-[100px]"/>
+      <textarea
+        value={comment}
+        onChange={(e) => setComment(e.target.value)}
+        required
+        placeholder="Your feedback"
+        className="w-full p-3 bg-gray-800 border border-gray-700 rounded min-h-[120px] focus:outline-none focus:ring-2 focus:ring-sky-500 mb-4"
+      />
 
-      <div className="mt-3">
-        <button type="submit" className="px-4 py-2 rounded bg-sky-600 text-white">Submit</button>
-      </div>
+      <button
+        type="submit"
+        className="bg-sky-600 hover:bg-sky-700 text-white font-medium py-2 px-5 rounded transition duration-200"
+      >
+        Submit
+      </button>
     </form>
   );
 };
